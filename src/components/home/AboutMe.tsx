@@ -24,13 +24,27 @@ function AboutMe() {
           duration: 0.8,
           ease: "power1.inOut",
         }),
+      onEnterBack: () =>
+        tl.from(aboutMeRef.current, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power1.inOut",
+        }),
       onLeave: () =>
-        tl.to(aboutMeRef.current, {
+        tl.from(aboutMeRef.current, {
           opacity: 0,
           y: "-100%",
           duration: 0.8,
           ease: "power1.inOut",
         }),
+      // OnLeaveBack: () =>
+      //   tl.fromto(aboutMeRef.current, {
+      //     opacity: 1,
+      //     y: 100,
+      //     duration: 0.8,
+      //     ease: "power1.inOut",
+      //   }),
     });
 
     return () => trigger.kill();

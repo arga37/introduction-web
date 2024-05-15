@@ -1,10 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
 function Header() {
   const header = useRef(null);
   const target = useRef(null);
   const observer = useRef(null);
+  const [active, setActive] = useState("home");
 
   useEffect(() => {
     observer.current = new IntersectionObserver((entries) => {
@@ -35,6 +36,14 @@ function Header() {
     return () => observer.current.disconnect();
   }, []);
 
+  const handleClick = (dest: React.SetStateAction<string>) => {
+    setActive(dest);
+    const section = document.querySelector(`#${dest}`);
+    section.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
+
   return (
     <>
       <div ref={target} style={{ height: "100px" }} />
@@ -45,10 +54,42 @@ function Header() {
       >
         <div className="text-3xl font-bold">AMP.</div>
         <div className="flex space-x-10 font-bold">
-          <ul>Home</ul>
-          <ul>About Me</ul>
-          <ul>Gallery</ul>
-          <ul>Project</ul>
+          <ul>
+            <a
+              href="#"
+              onClick={() => handleClick("#intro")}
+              className={active === "home" ? "underline" : ""}
+            >
+              Home
+            </a>
+          </ul>
+          <ul>
+            <a
+              href="#"
+              onClick={() => handleClick("aboutme")}
+              className={active === "aboutme" ? "underline" : ""}
+            >
+              About Me
+            </a>
+          </ul>
+          <ul>
+            <a
+              href="#"
+              onClick={() => handleClick("gallery")}
+              className={active === "gallery" ? "underline" : ""}
+            >
+              Gallery
+            </a>
+          </ul>
+          <ul>
+            <a
+              href="#"
+              onClick={() => handleClick("projects")}
+              className={active === "projects" ? "underline" : ""}
+            >
+              Projects
+            </a>
+          </ul>
         </div>
       </div>
     </>

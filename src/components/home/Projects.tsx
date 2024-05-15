@@ -11,6 +11,7 @@ function Projects() {
   let boxTwo = useRef(null);
 
   useEffect(() => {});
+
   return (
     <>
       <div className="h-auto">
