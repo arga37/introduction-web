@@ -48,6 +48,7 @@ function Header() {
           <ul>Home</ul>
           <ul>About Me</ul>
           <ul>Gallery</ul>
+          <ul>Project</ul>
         </div>
       </div>
     </>
