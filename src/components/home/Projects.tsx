@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import unasFestProject from "../../images/unasfest-project.png";
 import kssConsultingProject from "../../images/kssconsulting-project.png";
 import { FaElementor, FaFigma, FaReact, FaWordpress } from "react-icons/fa";

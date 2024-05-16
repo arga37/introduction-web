@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { FaNodeJs, FaPython, FaReact } from "react-icons/fa";
 import { SiTypescript } from "react-icons/si";
 import gsap from "gsap";

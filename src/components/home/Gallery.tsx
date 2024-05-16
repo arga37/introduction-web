@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import SoftArga from "../../images/soft-arga.jpg";
 import BeatboxArga from "../../images/beatbox-arga.jpg";
 import BlurryArga from "../../images/blurry-arga.jpg";
@@ -20,7 +20,7 @@ function Gallery() {
       start: "top 100%",
       end: "bottom 0%",
       onEnterBack: () => {
-        t1.from(imagesRef.current.children, {
+        t1.from(imagesRef.current, {
           opacity: 0,
           y: "100%",
           duration: 0.8,
@@ -29,7 +29,7 @@ function Gallery() {
         });
       },
       onEnter: () => {
-        t1.from(imagesRef.current.children, {
+        t1.from(imagesRef.current, {
           opacity: 1,
           y: 0,
           duration: 0.8,

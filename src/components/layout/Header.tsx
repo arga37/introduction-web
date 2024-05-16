@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
 function Header() {
-  const header = useRef(null);
-  const target = useRef(null);
-  const observer = useRef(null);
-  const [active, setActive] = useState("home");
+  const header = useRef<HTMLDivElement>(null);
+  const target = useRef<HTMLDivElement>(null);
+  const observer = useRef<IntersectionObserver | null>(null);
+  const [active, setActive] = useState<string>("home");
 
   useEffect(() => {
     observer.current = new IntersectionObserver((entries) => {
@@ -25,23 +25,32 @@ function Header() {
       } else {
         gsap.to(header.current, {
           opacity: 0,
-          y: "-100",
+          y: -100,
           duration: 0.5,
           ease: "power1.inOut",
         });
       }
     });
 
-    observer.current.observe(target.current);
-    return () => observer.current.disconnect();
+    if (target.current && observer.current) {
+      observer.current.observe(target.current);
+    }
+
+    return () => {
+      if (observer.current) {
+        observer.current.disconnect();
+      }
+    };
   }, []);
 
-  const handleClick = (dest: React.SetStateAction<string>) => {
+  const handleClick = (dest: string) => {
     setActive(dest);
     const section = document.querySelector(`#${dest}`);
-    section.scrollIntoView({
-      behavior: "smooth",
-    });
+    if (section instanceof HTMLElement) {
+      section.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
   };
 
   return (
@@ -57,7 +66,7 @@ function Header() {
           <ul>
             <a
               href="#"
-              onClick={() => handleClick("#intro")}
+              onClick={() => handleClick("intro")}
               className={active === "home" ? "underline" : ""}
             >
               Home
